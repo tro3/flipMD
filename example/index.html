@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="example-app">
+  <head>
+    <meta charset="utf-8" />
+    <title>flipMD example</title>
+    <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/marked/lib/marked.js"></script>
+    <script src="../build/flipMD.min.js"></script>
+  </head>
+  <body>
+
+    <h1>FlipMD</h1>
+
+    <div ng-controller="MainController">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <textarea class="form-control" ng-model="my_markdown"></textarea>                
+                </div>
+                <div class="col-md-6">
+                    <div marked="my_markdown"></div>                
+                </div>
+            </div>
+        </div>
+
+    </div>
+  </body>
+
+  <script>
+    var app = angular.module('example-app', ['flipMD']);
+
+    app.config(['markedProvider', function(markedProvider) {
+      markedProvider.setOptions({gfm: true});
+    }]);
+
+    app.controller('MainController', ['$scope', function($scope) {
+      $scope.my_markdown = "*This* **is** [markdown](https://daringfireball.net/projects/markdown/)";
+    }]);
+  </script>
+</html>
