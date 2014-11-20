@@ -1,0 +1,11 @@
+{
+  "name": "flipMD",
+  "dependencies": {
+    "angular": "",
+    "bootstrap": "",
+    "marked": ""
+  },
+  "devDependencies": {
+    "angular-mocks": ""
+  }
+}

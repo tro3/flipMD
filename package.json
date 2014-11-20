@@ -1,0 +1,19 @@
+{
+  "author": "Trey Roessig",
+  "name": "flipMD",
+  "dependencies": {},
+  "devDependencies": {
+    "coffee-script": "",
+    "grunt": "",
+    "grunt-coffeelint": "",
+    "grunt-contrib-coffee": "",
+    "grunt-contrib-concat": "",
+    "grunt-contrib-jshint": "",
+    "grunt-contrib-uglify": "",
+    "grunt-karma": "",
+    "karma": "",
+    "karma-chrome-launcher": "",
+    "karma-coffee-preprocessor": "",
+    "karma-jasmine": ""
+  }
+}
