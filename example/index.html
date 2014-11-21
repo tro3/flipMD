@@ -14,10 +14,11 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
 
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/marked/lib/marked.js"></script>
-    <script src="../build/flipMD.min.js"></script>
+    <script src="../build/flipMD.js"></script>
   </head>
   <body>
 
@@ -28,7 +29,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <textarea class="form-control" ng-model="my_markdown"></textarea>                
+                    <div md-edit ng-model="my_markdown"></div>
                 </div>
                 <div class="col-md-6">
                     <div marked="my_markdown"></div>                
