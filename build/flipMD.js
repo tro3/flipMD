@@ -80,7 +80,7 @@
         return scope.textArea = element.find("textarea")[0];
       }
     };
-  }).controller('mdEditCtrl', function($scope, $timeout) {
+  }).controller('mdEditCtrl', ["$scope", "$timeout", function($scope, $timeout) {
     var s;
     s = $scope;
     s.preview = false;
@@ -187,8 +187,8 @@
           return s.insertText("~~" + val + "~~", sel.start, sel.end, 2, 2);
       }
     };
-  }).run(function($templateCache) {
+  }]).run(["$templateCache", function($templateCache) {
     return $templateCache.put('mdEdit/mdEdit.html', "<div class=\"panel panel-default\">\n  <div class=\"panel-heading clearfix\">\n    <div class=\"pull-left\" ng-show=\"!preview\">\n      <button class=\"btn btn-default btn-xs fa fa-bold\" ng-click=\"onEditor('bold')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-italic\" ng-click=\"onEditor('italic')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-underline\" ng-click=\"onEditor('underline')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-minus\" ng-click=\"onEditor('hline')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-list-ul\" ng-click=\"onEditor('list')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-list-ol\" ng-click=\"onEditor('list-2')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-header\" ng-click=\"onEditor('header')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-paperclip\" ng-click=\"onEditor('url')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-image\" ng-click=\"onEditor('img')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-code\" ng-click=\"onEditor('code')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-quote-left\" ng-click=\"onEditor('quote')\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-strikethrough\" ng-click=\"onEditor('strikethrough')\"></button>\n    </div>\n    <div class=\"pull-right\">\n      <button class=\"btn btn-default btn-xs fa fa-eye\" ng-click=\"onPreview()\" ng-class=\"{active: preview}\"></button>\n    </div>\n  </div>\n  <div class=\"panel-body\" style=\"padding: 2px;\" ng-show=\"!preview\">\n    <textarea id=\"mdEditArea\" class=\"form-control\" rows=\"20\" style=\"font-family: 'Andale Mono', 'Lucida Typewriter', monospace; font-size: small\" ng-model=\"md\" ng-trim=\"false\"></textarea>\n  </div>\n  <div class=\"panel-body\" ng-show=\"preview\">\n    <div marked=\"md\"></div>\n  </div>\n</div>");
-  });
+  }]);
 
 }).call(this);
