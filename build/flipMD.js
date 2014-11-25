@@ -80,7 +80,7 @@
         return scope.textArea = element.find("textarea")[0];
       }
     };
-  }).controller('mdEditCtrl', function($scope, $timeout) {
+  }).controller('mdEditCtrl', ["$scope", "$timeout", function($scope, $timeout) {
     var s;
     s = $scope;
     s.preview = false;
@@ -132,7 +132,7 @@
       return console.log(s.preview);
     };
     return s.onEditor = function(param) {
-      var sel, val;
+      var sel, txt, val;
       sel = s.getSelection();
       switch (param) {
         case "bold":
@@ -148,6 +148,9 @@
           return s.insertText("\n- Item", s.md.length, s.md.length, 3, 0);
         case "list-2":
           return s.insertText("\n1. Item", s.md.length, s.md.length, 4, 0);
+        case "table":
+          txt = "\n\n| Column1 | Column2 | Column3 |\n| ------- |:-------:| -------:|\n| Row1    | Data    | More    |\n| Row2    | Data    | More    |";
+          return s.insertText(txt, s.md.length, s.md.length, txt.length, 0);
         case "header":
           return s.insertText("\n\n# Header\n\n", sel.end, sel.end, 4, 2);
         case "url":
@@ -175,8 +178,8 @@
           return s.insertText("~~" + val + "~~", sel.start, sel.end, 2, 2);
       }
     };
-  }).run(function($templateCache) {
-    return $templateCache.put('mdEdit/mdEdit.html', "<div class=\"panel panel-default\">\n  <div class=\"panel-heading clearfix\">\n    <div class=\"pull-left\" ng-show=\"!preview\">\n      <button class=\"btn btn-default btn-xs fa fa-bold\"          ng-click=\"onEditor('bold')\"          tooltip=\"Bold\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-italic\"        ng-click=\"onEditor('italic')\"        tooltip=\"Italic\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-underline\"     ng-click=\"onEditor('underline')\"     tooltip=\"Underline\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-minus\"         ng-click=\"onEditor('hline')\"         tooltip=\"Horizontal Line\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-list-ul\"       ng-click=\"onEditor('list')\"          tooltip=\"Bullet List\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-list-ol\"       ng-click=\"onEditor('list-2')\"        tooltip=\"Numbered List\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-header\"        ng-click=\"onEditor('header')\"        tooltip=\"Header\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-paperclip\"     ng-click=\"onEditor('url')\"           tooltip=\"Link\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-image\"         ng-click=\"onEditor('img')\"           tooltip=\"Image\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-code\"          ng-click=\"onEditor('code')\"          tooltip=\"Code\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-quote-left\"    ng-click=\"onEditor('quote')\"         tooltip=\"Quote\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-strikethrough\" ng-click=\"onEditor('strikethrough')\" tooltip=\"Strikethrough\"></button>\n    </div>\n    <div class=\"pull-right\">\n      <button class=\"btn btn-default btn-xs fa fa-eye\" ng-click=\"onPreview()\" ng-class=\"{active: preview}\" tooltip=\"Preview\"></button>\n      <a class=\"btn btn-default btn-xs fa fa-question\" href=\"https://help.github.com/articles/markdown-basics/\" tooltip=\"Help\"></a>\n    </div>\n  </div>\n  <div class=\"panel-body\" style=\"padding: 2px;\" ng-show=\"!preview\">\n    <textarea id=\"mdEditArea\" class=\"form-control\" rows=\"20\" style=\"font-family: 'Andale Mono', 'Lucida Typewriter', monospace; font-size: small\" ng-model=\"md\" ng-trim=\"false\"></textarea>\n  </div>\n  <div class=\"panel-body\" ng-show=\"preview\">\n    <div marked=\"md\"></div>\n  </div>\n</div>");
-  });
+  }]).run(["$templateCache", function($templateCache) {
+    return $templateCache.put('mdEdit/mdEdit.html', "<div class=\"panel panel-default\">\n  <div class=\"panel-heading clearfix\">\n    <div class=\"pull-left\" ng-show=\"!preview\">\n      <button class=\"btn btn-default btn-xs fa fa-bold\"          ng-click=\"onEditor('bold')\"          tooltip=\"Bold\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-italic\"        ng-click=\"onEditor('italic')\"        tooltip=\"Italic\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-underline\"     ng-click=\"onEditor('underline')\"     tooltip=\"Underline\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-minus\"         ng-click=\"onEditor('hline')\"         tooltip=\"Horizontal Line\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-list-ul\"       ng-click=\"onEditor('list')\"          tooltip=\"Bullet List\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-list-ol\"       ng-click=\"onEditor('list-2')\"        tooltip=\"Numbered List\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-table\"         ng-click=\"onEditor('table')\"         tooltip=\"Table\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-header\"        ng-click=\"onEditor('header')\"        tooltip=\"Header\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-paperclip\"     ng-click=\"onEditor('url')\"           tooltip=\"Link\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-image\"         ng-click=\"onEditor('img')\"           tooltip=\"Image\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-code\"          ng-click=\"onEditor('code')\"          tooltip=\"Code\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-quote-left\"    ng-click=\"onEditor('quote')\"         tooltip=\"Quote\"></button>\n      <button class=\"btn btn-default btn-xs fa fa-strikethrough\" ng-click=\"onEditor('strikethrough')\" tooltip=\"Strikethrough\"></button>\n    </div>\n    <div class=\"pull-right\">\n      <button class=\"btn btn-default btn-xs fa fa-eye\" ng-click=\"onPreview()\" ng-class=\"{active: preview}\" tooltip=\"Preview\"></button>\n      <a class=\"btn btn-default btn-xs fa fa-question\" href=\"https://help.github.com/articles/markdown-basics/\" tooltip=\"Help\"></a>\n    </div>\n  </div>\n  <div class=\"panel-body\" style=\"padding: 2px;\" ng-show=\"!preview\">\n    <textarea id=\"mdEditArea\" class=\"form-control\" rows=\"20\" style=\"font-family: 'Andale Mono', 'Lucida Typewriter', monospace; font-size: small\" ng-model=\"md\" ng-trim=\"false\"></textarea>\n  </div>\n  <div class=\"panel-body\" ng-show=\"preview\">\n    <div marked=\"md\"></div>\n  </div>\n</div>");
+  }]);
 
 }).call(this);

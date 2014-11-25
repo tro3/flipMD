@@ -70,6 +70,9 @@ angular.module('flipMD.mdEdit', [
     s.preview = not s.preview
     console.log(s.preview)
 
+
+
+
   s.onEditor = (param) ->
     sel = s.getSelection()
     switch(param)
@@ -86,6 +89,15 @@ angular.module('flipMD.mdEdit', [
         s.insertText("\n- Item", s.md.length, s.md.length, 3, 0)
       when "list-2"
         s.insertText("\n1. Item", s.md.length, s.md.length, 4, 0)
+      when "table"
+        txt = """
+
+
+| Column1 | Column2 | Column3 |
+| ------- |:-------:| -------:|
+| Row1    | Data    | More    |
+| Row2    | Data    | More    |"""
+        s.insertText(txt, s.md.length, s.md.length, txt.length, 0)
       when "header"
         s.insertText("\n\n# Header\n\n", sel.end, sel.end, 4, 2)
       when "url"
@@ -122,6 +134,7 @@ angular.module('flipMD.mdEdit', [
           <button class="btn btn-default btn-xs fa fa-minus"         ng-click="onEditor('hline')"         tooltip="Horizontal Line"></button>
           <button class="btn btn-default btn-xs fa fa-list-ul"       ng-click="onEditor('list')"          tooltip="Bullet List"></button>
           <button class="btn btn-default btn-xs fa fa-list-ol"       ng-click="onEditor('list-2')"        tooltip="Numbered List"></button>
+          <button class="btn btn-default btn-xs fa fa-table"         ng-click="onEditor('table')"         tooltip="Table"></button>
           <button class="btn btn-default btn-xs fa fa-header"        ng-click="onEditor('header')"        tooltip="Header"></button>
           <button class="btn btn-default btn-xs fa fa-paperclip"     ng-click="onEditor('url')"           tooltip="Link"></button>
           <button class="btn btn-default btn-xs fa fa-image"         ng-click="onEditor('img')"           tooltip="Image"></button>
