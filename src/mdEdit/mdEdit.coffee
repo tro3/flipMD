@@ -1,4 +1,5 @@
 angular.module('flipMD.mdEdit', [
+  'ui.bootstrap'
 ])
 
 .directive('mdEdit', () ->
@@ -125,21 +126,21 @@ angular.module('flipMD.mdEdit', [
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
         <div class="pull-left" ng-show="!preview">
-          <button class="btn btn-default btn-xs fa fa-bold" ng-click="onEditor('bold')"></button>
-          <button class="btn btn-default btn-xs fa fa-italic" ng-click="onEditor('italic')"></button>
-          <button class="btn btn-default btn-xs fa fa-underline" ng-click="onEditor('underline')"></button>
-          <button class="btn btn-default btn-xs fa fa-minus" ng-click="onEditor('hline')"></button>
-          <button class="btn btn-default btn-xs fa fa-list-ul" ng-click="onEditor('list')"></button>
-          <button class="btn btn-default btn-xs fa fa-list-ol" ng-click="onEditor('list-2')"></button>
-          <button class="btn btn-default btn-xs fa fa-header" ng-click="onEditor('header')"></button>
-          <button class="btn btn-default btn-xs fa fa-paperclip" ng-click="onEditor('url')"></button>
-          <button class="btn btn-default btn-xs fa fa-image" ng-click="onEditor('img')"></button>
-          <button class="btn btn-default btn-xs fa fa-code" ng-click="onEditor('code')"></button>
-          <button class="btn btn-default btn-xs fa fa-quote-left" ng-click="onEditor('quote')"></button>
-          <button class="btn btn-default btn-xs fa fa-strikethrough" ng-click="onEditor('strikethrough')"></button>
+          <button class="btn btn-default btn-xs fa fa-bold"          ng-click="onEditor('bold')"          tooltip="Bold"></button>
+          <button class="btn btn-default btn-xs fa fa-italic"        ng-click="onEditor('italic')"        tooltip="Italic"></button>
+          <button class="btn btn-default btn-xs fa fa-underline"     ng-click="onEditor('underline')"     tooltip="Underline"></button>
+          <button class="btn btn-default btn-xs fa fa-minus"         ng-click="onEditor('hline')"         tooltip="Horizontal Line"></button>
+          <button class="btn btn-default btn-xs fa fa-list-ul"       ng-click="onEditor('list')"          tooltip="Bullet List"></button>
+          <button class="btn btn-default btn-xs fa fa-list-ol"       ng-click="onEditor('list-2')"        tooltip="Numbered List"></button>
+          <button class="btn btn-default btn-xs fa fa-header"        ng-click="onEditor('header')"        tooltip="Header"></button>
+          <button class="btn btn-default btn-xs fa fa-paperclip"     ng-click="onEditor('url')"           tooltip="Link"></button>
+          <button class="btn btn-default btn-xs fa fa-image"         ng-click="onEditor('img')"           tooltip="Image"></button>
+          <button class="btn btn-default btn-xs fa fa-code"          ng-click="onEditor('code')"          tooltip="Code"></button>
+          <button class="btn btn-default btn-xs fa fa-quote-left"    ng-click="onEditor('quote')"         tooltip="Quote"></button>
+          <button class="btn btn-default btn-xs fa fa-strikethrough" ng-click="onEditor('strikethrough')" tooltip="Strikethrough"></button>
         </div>
         <div class="pull-right">
-          <button class="btn btn-default btn-xs fa fa-eye" ng-click="onPreview()" ng-class="{active: preview}"></button>
+          <button class="btn btn-default btn-xs fa fa-eye" ng-click="onPreview()" ng-class="{active: preview}" tooltip="Preview"></button>
         </div>
       </div>
       <div class="panel-body" style="padding: 2px;" ng-show="!preview">
