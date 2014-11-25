@@ -141,6 +141,7 @@ angular.module('flipMD.mdEdit', [
         </div>
         <div class="pull-right">
           <button class="btn btn-default btn-xs fa fa-eye" ng-click="onPreview()" ng-class="{active: preview}" tooltip="Preview"></button>
+          <a class="btn btn-default btn-xs fa fa-question" href="https://help.github.com/articles/markdown-basics/" tooltip="Help"></a>
         </div>
       </div>
       <div class="panel-body" style="padding: 2px;" ng-show="!preview">
