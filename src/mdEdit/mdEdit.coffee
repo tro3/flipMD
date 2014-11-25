@@ -89,19 +89,9 @@ angular.module('flipMD.mdEdit', [
       when "header"
         s.insertText("\n\n# Header\n\n", sel.end, sel.end, 4, 2)
       when "url"
-        iUrl = prompt("Enter URL here:")
-        if iUrl == ""
-          iUrl = "http://codedaily.vn"
-        s.md += "\n"
-        aUrl = "[text](" + iUrl + ")"
-        s.insertPlaceholder(aUrl, 1, iUrl.length + 3 )
+        s.insertText("[link text](url)", sel.end, sel.end, 12, 1)
       when "img"
-        iUrl = prompt("Enter image URL here:")
-        if iUrl == ""
-          iUrl = "http://codedaily.vn"
-        s.md += "\n"
-        aUrl = "![image text](" + iUrl + ")"
-        s.insertPlaceholder(aUrl, 2, iUrl.length + 3 )
+        s.insertText("![alt text](url)", sel.end, sel.end, 12, 1)
       when "code"
         if sel.text.length
           s.insertText("`#{sel.text}`", sel.start, sel.end, 1, 1)

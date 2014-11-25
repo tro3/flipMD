@@ -132,7 +132,7 @@
       return console.log(s.preview);
     };
     return s.onEditor = function(param) {
-      var aUrl, iUrl, sel, val;
+      var sel, val;
       sel = s.getSelection();
       switch (param) {
         case "bold":
@@ -151,21 +151,9 @@
         case "header":
           return s.insertText("\n\n# Header\n\n", sel.end, sel.end, 4, 2);
         case "url":
-          iUrl = prompt("Enter URL here:");
-          if (iUrl === "") {
-            iUrl = "http://codedaily.vn";
-          }
-          s.md += "\n";
-          aUrl = "[text](" + iUrl + ")";
-          return s.insertPlaceholder(aUrl, 1, iUrl.length + 3);
+          return s.insertText("[link text](url)", sel.end, sel.end, 12, 1);
         case "img":
-          iUrl = prompt("Enter image URL here:");
-          if (iUrl === "") {
-            iUrl = "http://codedaily.vn";
-          }
-          s.md += "\n";
-          aUrl = "![image text](" + iUrl + ")";
-          return s.insertPlaceholder(aUrl, 2, iUrl.length + 3);
+          return s.insertText("![alt text](url)", sel.end, sel.end, 12, 1);
         case "code":
           if (sel.text.length) {
             return s.insertText("`" + sel.text + "`", sel.start, sel.end, 1, 1);
