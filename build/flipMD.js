@@ -1,9 +1,4 @@
 (function() {
-  angular.module('flipMD', ['flipMD.marked']);
-
-}).call(this);
-
-(function() {
   angular.module('flipMD', ['flipMD.marked', 'flipMD.mdEdit']);
 
 }).call(this);
@@ -53,6 +48,7 @@
       },
       link: function (scope, element, attrs) {
         set(scope.marked || element.text() || '');
+	element[0].className += ' markdown';
 
         function set(val) {
           element.html(marked(val || '', scope.opts || null));

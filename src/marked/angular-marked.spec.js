@@ -117,6 +117,11 @@ describe('Directive: marked,', function () {
       element = $compile('<div marked="\'## String\'"></div>')($scope);
       expect(element.html()).toContain('<h2 id="string">String</h2>');
     });
+
+    it('should have a markdown class', function () {
+      element = $compile('<div marked="\'## String\'"></div>')($scope);
+      expect(element.hasClass('markdown')).toBe(true);
+    });
   });
 
 });
